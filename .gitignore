@@ -50,3 +50,6 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+# Temp files #
+*temp_*
+
