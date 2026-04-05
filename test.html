@@ -2,29 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sample Page with Links</title>
+    <title>Edge Cases Test Page</title>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
+    <h1>Link Finder Edge Cases</h1>
 
-    <nav>
-        <a href="https://www.Google.com">Google</a>
-        <a href="https://www.Github.com">GitHub</a>
-        <a href="/about">About Us</a>
-    </nav>
-
+    <!-- Valid links with different protocols -->
     <section>
-        <h2>Featured Articles</h2>
-        <ul>
-            <li><a href="https://example.com/article1"></a></li>
-            <li><a href="https://example.com/article2">Web Scraping Basics</a></li>
-            <li><a href="https://example.com/article3">Best Practices for Parsing HTML</a></li>
-        </ul>
+        <h2>Valid Links</h2>
+        <a href="https://www.google.com">HTTPS with www</a>
+        <a href="http://example.com">HTTP without www</a>
+        <a href="https://subdomain.example.com">Subdomain</a>
+        <a href="http://www.example.co.uk">Different TLD</a>
     </section>
 
-    <footer>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/contact">Contact</a>
-    </footer>
+    <!-- Edge cases: Empty/Missing attributes -->
+    <section>
+        <h2>Empty/Missing Cases</h2>
+        <a href="">Empty href</a>
+        <a>No href attribute</a>
+        <a href="   ">Whitespace only</a>
+    </section>
+
+    <!-- Relative paths (should be filtered out) -->
+    <section>
+        <h2>Relative Paths</h2>
+        <a href="/about">Root relative</a>
+        <a href="./page">Current dir relative</a>
+        <a href="../parent">Parent dir relative</a>
+        <a href="page.html">File relative</a>
+    </section>
+
+    <!-- Special cases -->
+    <section>
+        <h2>Special Cases</h2>
+        <a href="javascript:void(0)">JavaScript void</a>
+        <a href="mailto:test@example.com">Mailto link</a>
+        <a href="tel:+1234567890">Phone link</a>
+        <a href="#anchor">Fragment only</a>
+        <a href="ftp://ftp.example.com">FTP Protocol</a>
+    </section>
+
+    <!-- Nested and complex -->
+    <section>
+        <h2>Complex Nesting</h2>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="https://www.nested.com">Deeply Nested Link</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Edge case: Very long URL -->
+    <section>
+        <h2>Long URLs</h2>
+        <a href="https://www.example.com/very/long/path/with/many/segments/and/query/parameters?key1=value1&key2=value2&key3=value3">Very Long URL</a>
+    </section>
+
+    <!-- Case sensitivity -->
+    <section>
+        <h2>Case Variations</h2>
+        <a href="https://WWW.UPPERCASE.COM">Uppercase WWW</a>
+        <a href="HTTPS://www.example.com">Uppercase HTTPS</a>
+        <a href="https://www.MixedCase.COM">Mixed case domain</a>
+    </section>
+
+    <!-- Text node edge cases -->
+    <section>
+        <h2>Text Variations</h2>
+        <a href="https://www.example1.com">Normal text</a>
+        <a href="https://www.example2.com">   Whitespace around text   </a>
+        <a href="https://www.example3.com"></a>
+        <a href="https://www.example4.com"><span>Text in span</span></a>
+    </section>
+
 </body>
 </html>
