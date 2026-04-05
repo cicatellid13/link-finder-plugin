@@ -37,21 +37,42 @@ func (dh *DataHander) parseData() []map[string]string {
 
 func (dh *DataHander) extractLinks(n *html.Node) {
 	if n.Type == html.ElementNode && n.Data == "a" {
-		for _, attr := range n.Attr {
-			if attr.Key == "href" {
-				lowerAttrVal := strings.ToLower(attr.Val)
-				realLink := strings.Contains(lowerAttrVal, "www") || strings.Contains(lowerAttrVal, "http")
-				if realLink == true {
-					dh.Results = append(dh.Results, map[string]string{"link": attr.Val})
-				}
-			}
-		}
+		dh.processLink(n)
 	}
-
-	// Recursively call extractLinks on child nodes
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		dh.extractLinks(c)
 	}
+
+}
+
+func (dh *DataHander) processLink(n *html.Node) {
+	var link, label string
+
+	for _, attr := range n.Attr {
+		if attr.Key == "href" {
+			link = attr.Val
+			break
+		}
+	}
+	if link == "" {
+		return
+	}
+
+	if n.FirstChild != nil && n.FirstChild.Type == html.TextNode {
+		label = strings.TrimSpace(n.FirstChild.Data)
+	}
+	if isRealLink(link) {
+		if len(label) > 0 {
+			dh.Results = append(dh.Results, map[string]string{label: link})
+		} else {
+			dh.Results = append(dh.Results, map[string]string{"link": link})
+		}
+	}
+}
+
+func isRealLink(link string) bool {
+	lowerLink := strings.ToLower(link)
+	return strings.Contains(lowerLink, "www") || strings.Contains(lowerLink, "http")
 }
 
 func main() {
@@ -59,6 +80,9 @@ func main() {
 	links := dh.parseData()
 
 	for _, link := range links {
-		log.Println(link["link"])
+		// log.Println(link["link"])
+		for k, v := range link {
+			log.Println(k, v)
+		}
 	}
 }
