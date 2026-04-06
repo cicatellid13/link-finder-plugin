@@ -97,17 +97,48 @@
     #results {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2px;
+    }
+
+    .group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--tag-text);
+      letter-spacing: 0.01em;
+    }
+
+    .group-count {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .group-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .item {
-      display: block;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 12px;
-      text-decoration: none;
-      color: inherit;
       box-shadow: var(--shadow);
       transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
     }
@@ -116,6 +147,15 @@
       background: var(--hover);
       border-color: #cfe0ff;
       transform: translateY(-1px);
+    }
+
+    .item-link {
+      display: block;
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      text-decoration: none;
+      color: inherit;
     }
 
     .item-top {
@@ -155,6 +195,31 @@
       color: var(--muted);
       word-break: break-word;
       line-height: 1.4;
+    }
+
+    .copy-btn {
+      margin: 12px 12px 0 0;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 8px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .copy-btn:hover {
+      background: #f3f4f6;
+      border-color: #cbd5e1;
+    }
+
+    .copy-btn.copied {
+      background: #e8f0ff;
+      border-color: #bfd4ff;
+      color: #2457c5;
     }
 
     .empty {
