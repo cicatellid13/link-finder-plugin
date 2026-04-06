@@ -78,10 +78,8 @@ func run() {
 		}
 		links := dh.ParseData([]byte(htmlStr))
 
-		success := len(links) > 0
-
 		jsonResp := Response{
-			Success: success,
+			Success: true,
 			Links:   links,
 		}
 

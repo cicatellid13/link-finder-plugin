@@ -1,0 +1,9 @@
+{
+    "name": "com.linkfinder.native",
+    "description": "Link Finder Native Host",
+    "path": "/absolute/path/to/bin/link-finder",
+    "type": "stdio",
+    "allowed_origins": [
+      "chrome-extension://YOUR_EXTENSION_ID/"
+    ]
+  }

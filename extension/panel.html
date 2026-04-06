@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --hover: #eef4ff;
+      --accent: #2563eb;
+      --tag-bg: #e8f0ff;
+      --tag-text: #2457c5;
+      --shadow: 0 1px 2px rgba(0,0,0,0.06), 0 6px 18px rgba(0,0,0,0.04);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 12px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .shell {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: var(--bg);
+      padding-bottom: 4px;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .count-pill {
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--tag-bg);
+      border: 1px solid #d9e7ff;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .search-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 8px 10px;
+    }
+
+    #searchBox {
+      width: 100%;
+      border: 0;
+      outline: none;
+      background: transparent;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    #searchBox::placeholder {
+      color: #9ca3af;
+    }
+
+    #status {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 2px 2px 0;
+    }
+
+    #results {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item {
+      display: block;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow);
+      transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .item:hover {
+      background: var(--hover);
+      border-color: #cfe0ff;
+      transform: translateY(-1px);
+    }
+
+    .item-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .text {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .domain {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      border: 1px solid #d9e7ff;
+      padding: 3px 7px;
+      border-radius: 999px;
+      max-width: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .href {
+      font-size: 11px;
+      color: var(--muted);
+      word-break: break-word;
+      line-height: 1.4;
+    }
+
+    .empty {
+      background: var(--panel);
+      border: 1px dashed #d1d5db;
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="header">
+      <div class="title-row">
+        <h3>Links</h3>
+        <div class="count-pill" id="countPill">0</div>
+      </div>
+
+      <div class="search-wrap">
+        <input id="searchBox" type="text" placeholder="Search links or labels" />
+      </div>
+
+      <div id="status">Loading...</div>
+    </div>
+
+    <div id="results"></div>
+  </div>
+
+  <script src="panel.js"></script>
+</body>
+</html>
